@@ -15,7 +15,7 @@ Four areas of Analysis: Typically we look at two of these four areas, however al
   3 - Server-side penetration testing
   4 - Reverse Engineering & Code Analysis
   
-
+1 - Mobile Forensics & Data Recovery
 Mobile Data at Rest: Locations on a mobile phone where data-at-rest can be found:
 - Private Application Folder - Folder is created everytime you install an app and use it - True for IOS and Android
 - SD Card / Emulated SD Card - Specific to Android
@@ -54,7 +54,7 @@ Use command line grep in large files for data
 Look beyond usual storage locations - Dont limit yourself.
 IOS apps use the Cache.db file which often contains a large amount of data - Default from IOS 6/7 >
 
-2 - Network, web services and API testing
+2/3 - Network, web services and API testing
 
 Data in Transit: Typical issues include:
 
@@ -92,3 +92,5 @@ Server Side security - Typically same common issues that occur in web applicatio
   - Weak Ciphers - As per web application testing using tools such as ssltest. 
   
 Try using both trusted and untrusted certificates when intercepting data in transit.
+
+4 - Reverse Engineering & Code Analysis
