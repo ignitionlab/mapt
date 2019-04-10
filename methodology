@@ -16,7 +16,6 @@ Four areas of Analysis:
   4 - Reverse Engineering & Code Analysis
   
 
-1 - Mobile Forensics & Data Recovery
 Mobile Data at Rest: Locations on a mobile phone where data-at-rest can be found:
 - Private Application Folder - Folder is created everytime you install an app and use it - True for IOS and Android
 - SD Card / Emulated SD Card - Specific to Android
