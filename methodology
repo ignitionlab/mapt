@@ -9,7 +9,7 @@ Implementing the Analysis Checklist
   Areas in which this can help
   - 
 
-Four areas of Analysis:
+Four areas of Analysis: Typically we look at two of these four areas, however all should be covered to ensure complete coverage. 
   1 - Mobile Forensics & Data Recovery
   2 - Network, web services and API testing
   3 - Server-side penetration testing
@@ -55,3 +55,40 @@ Look beyond usual storage locations - Dont limit yourself.
 IOS apps use the Cache.db file which often contains a large amount of data - Default from IOS 6/7 >
 
 2 - Network, web services and API testing
+
+Data in Transit: Typical issues include:
+
+- Insecure Communication
+  - Certificate validation issues  - Lack of certificate validation, developers accept using a self-signed certs.
+    Tools - mitmproxy - If certificate validation in implemented correctly, no traffic should be shown in mitmproxy tool.
+  - Privacy leakage
+    - Sharing of sensitive data by Android Apps to domains 
+      - Email Addresses
+      - Username/Password
+      - Phone number
+      - IMEI/IMSI
+      - Home Address
+      - Content of messages
+
+- Insecure authentication (Process of sending credentials in an attempt to connect)
+  - Predictable session identifiers
+  - Failing to log users out
+  - Session lifetime risks
+    - Sessions valid too long
+    - Sessions valid across multiple channels
+  - Session Fixation
+  
+- Insecure authorisation (Gain access to a resource based upon the configured permissions allowing your access)
+  - Servers accepting/responding to request without authorisation
+  - Client based authorisation decisions
+  - Simple errors found in requests and reponses : such as isAdmin false changed to isAdmin true
+
+Server Side security - Typically same common issues that occur in web applications, see OWASP top ten.
+  - Injection
+     - SQL
+     - XSS
+     - Command
+  - Improper session handling - Session still valid for period of time even after sign out.
+  - Weak Ciphers - As per web application testing using tools such as ssltest. 
+  
+Try using both trusted and untrusted certificates when intercepting data in transit.
