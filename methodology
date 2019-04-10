@@ -94,3 +94,53 @@ Server Side security - Typically same common issues that occur in web applicatio
 Try using both trusted and untrusted certificates when intercepting data in transit.
 
 4 - Reverse Engineering & Code Analysis
+
+Reverse Engineering(RE)- taking the executable code(not human readable) and translating it into something that easier to understand.  It also involves disassembling code into it component parts.  
+
+The purpose of RE:
+  - Analysis of the Apps Code
+  - Identifying vulnerabilities
+  - Finding hardcoded sensitive data
+  - Analysis of malware
+  - Modifying an app functionality
+  
+Why RE:
+Can the app be tampered with?
+Can the app be modifiied during runtime?
+
+Does the app allow you to pull it from the device, re-sign it and then re-install?
+  - Can the app's main executable be modified?
+  - Can the app's supplementary files such as scripts and native libraries be modified?
+
+What can be seen as a result of hooking API's?
+  - Filesystem
+  - Cryptography - dump keys, initialisation vectors, identifying cipher, dump the decrypted blob
+  - Network - what servers and IP addresses does the app talk to
+  - Observe the app as it writes files or transmits data- is any interesting/private data being leaked?
+  
+Specific vulns that should be identified by RE:
+  - Insecure network communication / sensitive data leaking over the network - Typically occurs with API hooking 
+  - Interprocess communication (IPC) issues
+    - More relevant to Android apps as IOS apps typically dont talk to one another
+    - Content providers with directory traversal or SQLi vulns
+  - Hard Coded Encryption keys
+  - AES with null initialisation vector (IV)
+  - Helpful logging is disabled at runtime
+    - But logging statements still available during static analysis
+    - Can be used to determine names for classes and variables
+    - Common in Java
+  - Logic Flaws or easily circumvented security
+ 
+
+Example: Android
+adb shell pm list packages ~~ This returns a full list of packages, locate the one we require: com.appscentral.psa
+adb shell pm list packages -f com.appscentral.psa ~~ This returns the location of the apk file on the device : package:/data/app/com.appscentral.psa-2/base.apk=com.appscentral.psa 
+adb pull /data/app/com.appscentral.psa-2/base.apk  ~~ This pulls down the apk file for the app
+apktool d base.apk
+
+Use dex2jar to convert classes.dex file into a readable format for JD-GUI so thta you can search through source code for strings like passwords or API's.
+
+Command in Kali is: d2j-dex2jar -h
+
+
+Use apktool to get smali code 
