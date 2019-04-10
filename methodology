@@ -1,0 +1,58 @@
+Create an Analysis Checklist
+  Why? 
+  - Helps to create a minimum baseline for security testing
+  - Provides consistency across tests
+  - Allow for consultant to have some leeway to get creative during the application testing process.
+
+Implementing the Analysis Checklist
+  Why ? - Creates a repeatable process which can be used to drive consistency and metrics
+  Areas in which this can help
+  - 
+
+Four areas of Analysis:
+  1 - Mobile Forensics & Data Recovery
+  2 - Network, web services and API testing
+  3 - Server-side penetration testing
+  4 - Reverse Engineering & Code Analysis
+  
+
+1 - Mobile Forensics & Data Recovery
+Mobile Data at Rest: Locations on a mobile phone where data-at-rest can be found:
+- Private Application Folder - Folder is created everytime you install an app and use it - True for IOS and Android
+- SD Card / Emulated SD Card - Specific to Android
+- System log files - Applies to all platforms, not just specific to mobile apps, but also for the devices itself. eg, Error logs  
+  Used during development phase to help with debugging, often get forgotten about when app goes into production.  
+- Keychain - Used to store usernames and credentials - IOS only.
+- RAM - Often data will reside here until a device is rebooted
+- Source code (Hardcoded) - Values hardcoded into app, passwords and values - code analysis required to check for these.
+- Web Cache / history - hybrid/web wrapper apps - Not so common these days.
+
+Target:               Relevant Tools & or documentation
+File System           Android: debug bridge - adb commands, ie - abd pull command
+                      IOS    : libimobiledevice
+
+System Log Files      Android: logcat - command line tool
+                      IOS    : Syslog
+
+IOS Keychain          IOS Keychain 
+
+RAM                   Android: debug bridge - adb commands, ie, - adb dumpsys meminfo
+                      IOS    : heapdump-ios
+                      
+Understanding & Prioritising findings by risk:
+ - Risk depends on the location of data: - Data stored on SD card is considered higher risk than data stored in the application folder      as other applications will also have access to the SD card.
+ 
+ - Considerations for risk:
+   - Sensitivity of the data
+   - Likeliness of exploit 
+   - Remote vs local attack (physical access required).
+   - CVSS can be used as there is a mobile focus 
+  
+Pointers to consider when performing analysis: 
+SQLite Databases, plist(IOS) and xml files - find a favourite viewer for sifting through these formats
+Look for data stored as common hashes/encodings - base64, md5, sha256
+Use command line grep in large files for data
+Look beyond usual storage locations - Dont limit yourself.
+IOS apps use the Cache.db file which often contains a large amount of data - Default from IOS 6/7 >
+
+2 - Network, web services and API testing
