@@ -1,0 +1,1 @@
+Developers keep leaving 'androidBackup=true' enabled in the AndroidManifest.xml as its a default now.  Easy win to get SQLite databases by using ADB to backup the app, then use Android Backup Extractor to swithc it to a TAR file.  <-- Courtsey of infosecps
